@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ability_id: 
+  pokemon_id: 
+
+two:
+  ability_id: 
+  pokemon_id: 

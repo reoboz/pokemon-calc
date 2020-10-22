@@ -1,0 +1,11 @@
+<ul>
+<% pokeresult.each_with_index do |val, i|%>
+<li <%= 'style=display:none;' if i >= 20 %> class="calc_result">
+  <span class="hits"><%= "#{val[:hits]}" %></span>
+  <span class="name_ability"><%= "#{val[:pokemon]}の#{val[:ability]}" %></span>
+</li>
+  <p class="calc_result">
+  <%= "とくせい: #{val[:speciality]}"%><br>
+  <%= "#{val[:damage].first}(#{val[:worst_permille]}) ~ #{val[:damage].last}(#{val[:ideal_permille]})ダメージ" %></span>
+<% end %>
+</ul>

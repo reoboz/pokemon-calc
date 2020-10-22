@@ -1,0 +1,149 @@
+// Place all the styles related to the Calc controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+*, *::after, *::before{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align:sub;
+  min-height:45px;
+}
+body{
+  background-color:#acdba7;
+}
+*{
+}
+
+.d_pokemon_name{
+  background-color: #57827c;
+  border-radius: 3px;
+  border:1px solid black;
+  cursor: pointer;
+
+  padding: 7px 15px;
+  margin: 8px 2px 0px 1px;
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  position: fixed;
+  top:22px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.d_pokemon_name > span{
+  color:white;
+}
+
+form{
+  margin-top:55px;
+}
+
+table{
+  margin:auto;
+}
+td > *{
+  margin:10px 0px;
+}
+
+input[type="text"], select {
+  border: 1px solid seagreen;
+  background: beige;
+  box-sizing:border-box;
+  width:100%;
+  display:block;
+  margin:10px auto;
+}
+
+input[type="submit"] {
+  margin: 0px auto;
+    display: block;
+    width: 100px;
+}
+
+
+.radio > *{
+  min-height:0px;
+  padding:0px 15px 0px 0px;
+}
+
+.result_container{
+  max-width: 360px;
+  margin: auto;
+}
+
+ul{
+  list-style:none;
+  padding-left:0px;
+}
+
+li.calc_result {
+  background-color: #db5a7c;
+  border-radius: 3px;
+  border:1px solid black;
+  padding: 7px 15px;
+  margin: 8px 2px 0px 2px;
+  display:block;
+cursor:pointer;
+}
+
+p.calc_result{
+  background:#f2f2f2;
+  text-align:center;
+  display:none;
+  margin: 0px 3px 0px;
+  box-sizing: border-box;
+  width: 98%;
+  border: solid 1px;
+}
+
+li > span {
+  color: white;
+}
+.hits {
+  background-color: #46535f;
+  padding: 2px 5px 2px 8px;
+  border-radius: 11px;
+}
+
+.misettei::after {
+  font-family: "Font Awesome 5 Free";
+  content: '\f0d7';
+  font-weight:900;
+  color: white;
+  }
+
+// ページトップに戻るボタン
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background: #3f98ef;
+  opacity: 0.88;
+  border-radius: 50%;
+}
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+#page_top a::before{
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f102';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -5px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}

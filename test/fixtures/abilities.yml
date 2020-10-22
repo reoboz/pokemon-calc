@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  damage_type: 1
+  amount: 1
+  accuracy: 1
+  min_hits: 1
+  max_hits: 1
+
+two:
+  type: 1
+  damage_type: 1
+  amount: 1
+  accuracy: 1
+  min_hits: 1
+  max_hits: 1

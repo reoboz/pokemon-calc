@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type1: 1
+  type2: 1
+  evolved_from: 
+  evolve_to: 
+  h: 1
+  a: 1
+  b: 1
+  c: 1
+  d: 1
+  s: 1
+
+two:
+  name: MyString
+  type1: 1
+  type2: 1
+  evolved_from: 
+  evolve_to: 
+  h: 1
+  a: 1
+  b: 1
+  c: 1
+  d: 1
+  s: 1

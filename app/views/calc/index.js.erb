@@ -1,0 +1,5 @@
+
+  /** jQueryの処理 */
+$(".result_container").empty();
+$(".result_container").html("<%= j(render 'calc/result', pokeresult: @result) %>");
+$("#js-d_pokemon_name").html("<%= @d.name %>")
