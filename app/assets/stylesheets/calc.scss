@@ -53,6 +53,7 @@ input[type="text"], select {
   width:100%;
   display:block;
   margin:10px auto;
+  font-size:16px;
 }
 
 select {
@@ -69,7 +70,7 @@ input[type="submit"] {
 
 .radio > *{
   min-height:0px;
-  padding:0px 15px 0px 0px;
+  padding:0px 11px 0px 0px;
 }
 
 .result_container{
