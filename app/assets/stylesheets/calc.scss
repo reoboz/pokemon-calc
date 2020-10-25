@@ -55,11 +55,6 @@ input[type="text"], select {
   margin:10px auto;
 }
 
-select {
-  -webkit-appearance: button;
-  appearance: button;
-}
-
 input[type="submit"] {
   margin: 0px auto;
     display: block;
@@ -145,7 +140,7 @@ li > span {
   position: absolute;
   width: 25px;
   height: 25px;
-  top: 14px;
+  top: -5px;
   bottom: 0;
   right: 0;
   left: 0;
