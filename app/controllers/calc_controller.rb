@@ -1,6 +1,6 @@
 class CalcController < ApplicationController
   def index
-
+    @pokeList = Pokemon.all.pluck(:name)
     @d = Pokemon.find_by(name: params["d_pokemon_name"])
     effort = params["effort"]
     seikaku = params["seikaku"]

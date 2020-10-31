@@ -1,4 +1,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<%# autoComplete %>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <div class="d_pokemon_name">
   <span>■防御ポケモン : <span style="vertical-align:unset;" id="js-d_pokemon_name"> </span></span>
 </div>
@@ -7,7 +12,7 @@
     <%# Input : 防御ポケモン名 %>
     <tr>
       <td>
-        <%= form.text_field :d_pokemon_name, placeholder: "ポケモン名を入力" %>
+        <%= form.text_field :d_pokemon_name, placeholder: "ポケモン名を入力", class: "js-search" %>
       </td>
     </tr>
     <%# Input : 性格 ^ - v %>
@@ -50,7 +55,6 @@
 <%# ページトップに戻るボタン %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
 <div id="page_top"><a href="#"></a></div>
-
 <script>
 
 // スクロールで追加の表示
@@ -59,7 +63,7 @@ $(window).on('scroll', function () {
 var doch = $(document).innerHeight(); //ページ全体の高さ
 var winh = $(window).innerHeight(); //ウィンドウの高さ
 var bottom = doch - winh; //ページ全体の高さ - ウィンドウの高さ = ページの最下部位置
-if (bottom * 0.98 <= $(window).scrollTop()) {
+if (bottom * 0.96 <= $(window).scrollTop()) {
   i+=5;
   $('li.calc_result').slice(0, i).show();
 }
@@ -69,6 +73,7 @@ if (bottom * 0.98 <= $(window).scrollTop()) {
 $('#page_top').on('click', function(e) {
   e.preventDefault();
   $(window).scrollTop(0);
+  console.log($.fn.jquery);
 })
 
 // 
@@ -77,4 +82,11 @@ $(function(){
     $(this).next().toggle();
   });
 });
+
+// AutoComplete
+  var PokeList = <%= raw(@pokeList) %>;
+  $('.js-search').autocomplete({
+    source: PokeList,
+    minLength: 2
+  })
 </script>
