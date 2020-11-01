@@ -47,6 +47,6 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-produciton:
+production:
   <<: *default
   database: pokemon_calc
