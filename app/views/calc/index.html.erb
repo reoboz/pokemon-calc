@@ -12,32 +12,29 @@
     <%# Input : 防御ポケモン名 %>
     <tr>
       <td>
+        <%= form.label :d_pokemon_name, "ポケモン" %>
         <%= form.text_field :d_pokemon_name, placeholder: "ポケモン名を入力", class: "js-search" %>
       </td>
     </tr>
     <%# Input : 性格 ^ - v %>
     <tr>
       <td>
-        <%= form.select :seikaku, {"変化なし(-)":0,"ぼうぎょ(↑)":1, "とくぼう(↑)":2, "ぼうぎょ(↓)":3,"とくぼう(↓)":4} %>
+        <%= form.label :seikaku, "性格" %>
+        <%= form.select :seikaku, {"性格なし(-)":0,"ぼうぎょ(↑)":1, "とくぼう(↑)":2, "ぼうぎょ(↓)":3,"とくぼう(↓)":4} %>
       </td>
     </tr>
     <%# Input : 持ち物 %>
     <tr>
       <td>
+        <%= form.label :item, "持ち物" %>
         <%= form.select :item, {"持ち物なし":0, "各種半減の実(ダメージ-50%)":1, "しんかのきせき(ぼうぎょ・とくぼう1.5倍)":2, "ぼうだんチョッキ(とくぼう1.5倍)":3} %>
       </td>
     </tr>
     <%# Input : 努力値 N H HB HD %>
     <tr>
-      <td class="radio">
-        <%= form.radio_button :effort, :none, {checked: true} %>
-        <%= form.label :effort, "無振り", {value: :none, style: "display: inline-block;"} %>
-        <%= form.radio_button :effort, :h %>
-        <%= form.label :effort, "H振り", {value: :h, style: "display: inline-block;"} %>
-        <%= form.radio_button :effort, :hb %>
-        <%= form.label :effort, "HB振り", {value: :hb, style: "display: inline-block;"} %>
-        <%= form.radio_button :effort, :hd %>
-        <%= form.label :effort, "HD振り", {value: :hd, style: "display: inline-block;"} %>
+      <td>
+        <%= form.label :effort, "努力値" %>
+        <%= form.select :effort, {"無振り":0, "H振り":1, "HB振り":2, "HD振り":3} %>
       </td>
     </tr>
     <tr>

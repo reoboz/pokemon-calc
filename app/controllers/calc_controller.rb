@@ -1,19 +1,23 @@
 class CalcController < ApplicationController
   def index
     @pokeList = Pokemon.all.pluck(:name)
-    @d = Pokemon.find_by(name: params["d_pokemon_name"])
-    effort = params["effort"]
-    seikaku = params["seikaku"]
-    item = params["item"]
-    # return render plain: @d.modify_data
-    # return render plain: "done"
-    options = [
-      :effort => effort,
-      :seikaku => seikaku,
-      :item => item
-    ]
-    @result = []
-    @result = get_list(@d.id, options[0]) unless @d.nil?
+    if params["d_pokemon_name"]
+      @d = Pokemon.find_by(name: params["d_pokemon_name"])
+      @type = Type.all
+      effort_list = ["none",'h','hb','hd']
+      effort = effort_list[params["effort"].to_i]
+      seikaku = params["seikaku"]
+      item = params["item"]
+      # return render plain: @d.modify_data
+      # return render plain: "done"
+      options = [
+        :effort => effort,
+        :seikaku => seikaku,
+        :item => item
+      ]
+      @result = []
+      @result = get_list(@d.id, options[0]) unless @d.nil?
+    end
     # @result = Kaminari.paginate_array(@result).page(params[:page]).per(5) unless @d.nil?
     # @result = paginate(@result,20)
     # @result = @result.slice(0..119) unless @d.nil?
@@ -231,7 +235,6 @@ class CalcController < ApplicationController
     multiplied *= (num / 4096.to_f)
 
     data[:multiplied] = multiplied
-    # puts "1:#{data[:multiplied]}" if multiplied != 1
     
     return data
   end
@@ -259,7 +262,6 @@ class CalcController < ApplicationController
     result = 1 if result < 1
     
     data[:result_1] = result
-    # puts "2:#{result}"
     return data
   end
 
@@ -293,7 +295,7 @@ class CalcController < ApplicationController
     when "ちからもち", "ヨガパワー"
       num = 8192 if data[:ability].damage_type == 1
     when "すいほう"
-      num = 8192 if data[:ability].pokemon_type = 3
+      num = 8192 if data[:ability].pokemon_type == 3
     # when "はりこみ"
     end
     multiplied *= (num / 4096.to_f)
@@ -309,6 +311,7 @@ class CalcController < ApplicationController
     multiplied *= (num / 4096.to_f)
 
     data[:multiplied] = multiplied
+
 
     # puts "3:#{data[:multiplied]}" if multiplied != 1
     return data
@@ -333,8 +336,7 @@ class CalcController < ApplicationController
     amount = data[:a_pokemon][:c] if data[:ability].damage_type == 2
     amount *= 1.5.floor if data[:a_pokemon][:speciality] == "はりきり"
 
-    result = amount
-
+    result = (amount * data[:multiplied]).to_f
     if data[:multiplied] == 1
       if result - result.to_i > 0.5
         result = result.ceil
@@ -383,7 +385,6 @@ class CalcController < ApplicationController
     multiplied *= (num / 4096.to_f)
 
     data[:multiplied] = multiplied
-    # puts "5:#{data[:multiplied]}" if multiplied != 1
     return data
   end
 
@@ -408,7 +409,7 @@ class CalcController < ApplicationController
     amount *= 1.5.floor if data[:d_pokemon][:type].include?(13) && data[:weather] == "すなあらし"
 
     result = amount
-
+    result = (amount * data[:multiplied]).to_f
     if data[:multiplied] == 1
       if result - result.to_i > 0.5
         result = result.ceil
@@ -511,7 +512,7 @@ class CalcController < ApplicationController
     # if きゅうしょ todo
 
     # タイプ一致ボーナス
-    if data[:ability].pokemon_type.in?([data[:a_pokemon][:type]])
+    if data[:ability].pokemon_type.in?(data[:a_pokemon][:type])
       result[:damage].map!{|damage|
         multiplied = 6144
         multiplied = 8192 if data[:a_pokemon][:speciality] == "てきおうりょく"
@@ -631,6 +632,7 @@ class CalcController < ApplicationController
       :h => result_h,
       :b => result_b, 
       :d => result_d,
+      :shuzoku_s => d_pokemon.s,
       :speciality => speciality,
       :item => options[:item]
     }
@@ -652,15 +654,16 @@ class CalcController < ApplicationController
     compare_best_speciality = []
     
     sim_data[:a_pokemon][:specialities].each do |speciality|
-      sim_data[:a_pokemon][:speciality] = speciality
-      sim_data = calc_1(sim_data)
-      sim_data = calc_2(sim_data)
-      sim_data = calc_3(sim_data)
-      sim_data = calc_4(sim_data)
-      sim_data = calc_5(sim_data)
-      sim_data = calc_6(sim_data)
-      sim_data = calc_7(sim_data)
-      damages = calc_8(sim_data)
+      attempt = sim_data
+      attempt[:a_pokemon][:speciality] = speciality
+      attempt = calc_1(attempt)
+      attempt = calc_2(attempt)
+      attempt = calc_3(attempt)
+      attempt = calc_4(attempt)
+      attempt = calc_5(attempt)
+      attempt = calc_6(attempt)
+      attempt = calc_7(attempt)
+      damages = calc_8(attempt)
       
       compare_best_speciality << damages
     end
@@ -681,11 +684,19 @@ class CalcController < ApplicationController
         result = get_damage(a_pokemon_status, ability, d_pokemon_status)
         list_element = { 
           :pokemon => a_pokemon.name, 
-          :poke_a => result[:poke_a],
-          :poke_c => result[:poke_c],
+          :rf => a_pokemon.region_form,
+          :poke_h => a_pokemon.h,
+          :poke_a => a_pokemon.a,
+          :poke_b => a_pokemon.b,
+          :poke_c => a_pokemon.c,
+          :poke_d => a_pokemon.d,
+          :poke_s => a_pokemon.s,
           :ability => ability.name, 
+          :ability_pokemon_type => ability.pokemon_type,
+          :damage_type => ability.damage_type == 1 ? "物理" : "特殊",
           :damage => result[:damage],
-          :speciality => result[:speciality]
+          :speciality => result[:speciality],
+          :order => a_pokemon.s > d_pokemon_status[:shuzoku_s] ? '先攻' : '後攻'
         }
         damage_ranking << list_element
       end

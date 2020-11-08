@@ -12,8 +12,6 @@ body{
   background-color:#acdba7;
   font-family: "Arial","メイリオ";
 }
-*{
-}
 
 .d_pokemon_name{
   background-color: #57827c;
@@ -43,8 +41,9 @@ form{
 table{
   margin:auto;
 }
-td > *{
-  margin:10px 0px;
+
+td > label {
+  font-size:14.5px;
 }
 
 input[type="text"], select {
@@ -53,7 +52,7 @@ input[type="text"], select {
   box-sizing:border-box;
   width:100%;
   display:block;
-  margin:10px auto;
+  margin:0 auto 10px auto;
   font-size:16px;
 }
 
@@ -71,7 +70,7 @@ input[type="submit"] {
 
 .radio > *{
   min-height:0px;
-  padding:0px 11px 0px 0px;
+  padding:0px 3px 0px 0px;
 }
 
 .result_container{
@@ -107,11 +106,35 @@ p.calc_result{
 li > span {
   color: white;
 }
-.hits {
+.tags {
   background-color: #46535f;
-  padding: 2px 5px 2px 8px;
+  padding: 2px 8px 2px 8px;
   border-radius: 11px;
 }
+.type-a {background-color: #ff7d17d4; padding-right:2px;}
+.type-c {background-color: #289ac3; padding-right:2px;}
+
+.move-first {background-color: #b92023;}
+.move-last {background-color: #346ca0;}
+
+.type-1  {background-color:#b7a1a1!important;}
+.type-2  {background-color:#ff8a2e!important;}
+.type-3  {background-color:#2c8ad4!important;}
+.type-4  {background-color:#b5ad07!important;}
+.type-5  {background-color:#55a731!important;}
+.type-6  {background-color:#87cbe8!important;}
+.type-7  {background-color:#c51d1d!important;}
+.type-8  {background-color:#af40b3!important;}
+.type-9  {background-color:#9e4949!important;}
+.type-10 {background-color:#a2aacc!important;}
+.type-11 {background-color:#f359a3!important;}
+.type-12 {background-color:#638e19!important;}
+.type-13 {background-color:#babb96!important;}
+.type-14 {background-color:#8560b9!important;}
+.type-15 {background-color:#1f0c9c!important;}
+.type-16 {background-color:#625e79!important;}
+.type-17 {background-color:#667b7b!important;}
+.type-18 {background-color:#cea7d6!important;}
 
 .misettei::after {
   font-family: "Font Awesome 5 Free";

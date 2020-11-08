@@ -1,11 +1,18 @@
 <ul>
 <% pokeresult.each_with_index do |val, i|%>
-<li <%= 'style=display:none;' if i >= 20 %> class="calc_result">
-  <span class="hits"><%= "#{val[:hits]}" %></span>
-  <span class="name_ability"><%= "#{val[:pokemon]}の#{val[:ability]}" %></span>
+<li <%= 'style=display:none;' if i >= 20 %> class="calc_result <%= "type-#{val[:ability_pokemon_type]}" %>">
+  <span class="tags hits"><%= "#{val[:hits]}" %></span>
+  <span class="tags <%= val[:order] == "先攻" ? 'move-first' : 'move-last' %>"><%= val[:order] %></span>
+  <span class="tags <%= val[:damage_type] == "物理" ? 'type-a' : 'type-c' %> "><%= "#{val[:damage_type]} "%></span>
+  <span class="tags <%= "type-#{val[:ability_pokemon_type]}" %>"><%= @type[val[:ability_pokemon_type]-1].name %></span><br>
+  <% if val[:rf] %>
+    <span class="name_ability"><%= "#{val[:pokemon]}(#{val[:rf]})の#{val[:ability]}" %></span>
+  <% else %>
+    <span class="name_ability"><%= "#{val[:pokemon]}の#{val[:ability]}" %></span>
+  <% end %>
 </li>
   <p class="calc_result">
+  <%= "#{val[:damage].first}(#{val[:worst_permille]}) ~ #{val[:damage].last}(#{val[:ideal_permille]})ダメージ" %></span><br>
   <%= "とくせい: #{val[:speciality]}"%><br>
-  <%= "#{val[:damage].first}(#{val[:worst_permille]}) ~ #{val[:damage].last}(#{val[:ideal_permille]})ダメージ" %></span>
 <% end %>
 </ul>
